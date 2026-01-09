@@ -1,0 +1,97 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.auth-container {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    width: 420px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #2563eb;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: none;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form.active {
+    display: flex;
+}
+
+label {
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"],
+input[type="tel"],
+input[type="file"] {
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #e2e8f0;
+    font-size: 16px;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="file"]:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+button {
+    padding: 12px;
+    background: #2563eb;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background: #1e40af;
+}
+
+.form-footer {
+    text-align: center;
+    color: #64748b;
+}
+
+.form-footer a {
+    color: #2563eb;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: 700;
+    margin: 0 5px;
+}
+
+.forgot-link {
+    color: #ef4444;
+    cursor: pointer;
+    font-weight: 600;
+    text-align: right;
+    margin-bottom: 10px;
+    display: block;
+}

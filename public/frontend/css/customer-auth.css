@@ -1,0 +1,240 @@
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    direction: rtl;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+.auth-container {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 20px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+/* Form Styles */
+form {
+    display: none;
+    flex-direction: column;
+}
+
+form.active {
+    display: flex;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #34495e;
+    font-size: 14px;
+}
+
+input[type="email"], 
+input[type="password"], 
+input[type="text"], 
+input[type="tel"] {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border: 2px solid #e1e8ed;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-1px);
+}
+
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Form Row */
+.form-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.form-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.form-check-input {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+}
+
+.form-check-label {
+    font-size: 14px;
+    color: #6c757d;
+    cursor: pointer;
+}
+
+.forgot-link {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: #5a6fd8;
+    text-decoration: underline;
+}
+
+/* Form Footer */
+.form-footer {
+    text-align: center;
+    font-size: 14px;
+    color: #7f8c8d;
+    padding-top: 15px;
+    border-top: 1px solid #e1e8ed;
+}
+
+.switch-form {
+    color: #667eea;
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+.switch-form:hover {
+    text-decoration: underline;
+    color: #5a6fd8;
+}
+
+/* Alert Styles */
+.alert {
+    padding: 12px 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: none;
+}
+
+.alert-danger {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.alert ul {
+    margin: 0;
+    padding-right: 20px;
+}
+
+.alert li {
+    margin-bottom: 5px;
+}
+
+/* Register Form Special */
+#registerForm {
+    text-align: center;
+    padding: 20px;
+}
+
+#registerForm h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+#registerForm p {
+    color: #7f8c8d;
+    margin-bottom: 20px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .auth-container {
+        margin: 10px;
+        padding: 25px 20px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 10px;
+    }
+    
+    input[type="email"], 
+    input[type="password"], 
+    input[type="text"], 
+    input[type="tel"] {
+        margin-bottom: 15px;
+    }
+}
