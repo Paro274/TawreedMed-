@@ -46,17 +46,20 @@ I have already created the necessary `Dockerfile` and `.dockerignore` files for 
 *Note: Railway allows you to reference other service variables like `${{MySQL.MYSQLHOST}}` so you don't have to copy-paste hardcoded IPs.*
 
 ## 5. Import Database
-Since your `database_dump.sql` is included in the project/image, you can import it easily:
-1.  Go to your **Laravel Service** in Railway.
-2.  Click on the **"Shell"** (or "Exec") tab (Command Line icon).
-3.  Run the following command to import your data:
-    ```bash
-    mysql -h $DB_HOST -u $DB_USERNAME -p$DB_PASSWORD $DB_DATABASE < database_dump.sql
-    ```
-4.  Run migrations (optional, if you want only structure or updates):
-    ```bash
-    php artisan migrate
-    ```
+Since the `database_dump.sql` was removed from the repository for security, you need to import it from your local computer.
+
+1.  **Get Connection Details**: From the Railway MySQL service "Connect" tab.
+2.  **Connect**: Use a database tool like **TablePlus**, **DBeaver**, **HeidiSQL**, or **MySQL Workbench**.
+3.  **Import**:
+    *   Open your database tool and connect using the Host, Port, User, and Password from Railway.
+    *   Select the database.
+    *   Choose the "Import" or "Restore" option in your tool.
+    *   Select the `database_dump.sql` file from your local computer (`c:\Users\Hp\Desktop\tawreedmed.com\database_dump.sql`).
+    *   Run the import.
+
+4.  **Run Migrations** (Optional):
+    *   Go to your **Laravel Service** in Railway > "Shell" tab.
+    *   Run: `php artisan migrate` to ensure everything is up to date.
 
 ## 6. Final Steps
 1.  Once the import is done, go to the **"Settings"** tab of your Laravel service.
