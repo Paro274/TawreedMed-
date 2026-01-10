@@ -22,9 +22,11 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd zip
 RUN a2enmod rewrite
 
 # Fix for "More than one MPM loaded" error
-# mod_php requires mpm_prefork. Installing dependencies might have enabled mpm_event.
-RUN a2dismod mpm_event || true \
-    && a2dismod mpm_worker || true \
+# Manually remove conflicting MPM modules to ensure only prefork is active
+RUN rm -f /etc/apache2/mods-enabled/mpm_event.load \
+    && rm -f /etc/apache2/mods-enabled/mpm_event.conf \
+    && rm -f /etc/apache2/mods-enabled/mpm_worker.load \
+    && rm -f /etc/apache2/mods-enabled/mpm_worker.conf \
     && a2enmod mpm_prefork
 
 # Configure Apache DocumentRoot to point to /public
