@@ -54,5 +54,11 @@ RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cac
 RUN rm -f /etc/apache2/mods-enabled/mpm_* \
     && a2enmod mpm_prefork
 
+# Setup Entrypoint
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["apache2-foreground"]
+
 # Expose port
 EXPOSE 80
