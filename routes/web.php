@@ -95,7 +95,7 @@ Route::prefix('admin/products')->middleware('admin.permission:products')->group(
     Route::post('/{id}/update', [AdminProductController::class, 'update'])->name('admin.products.update');
     Route::get('/{id}/approve', [AdminProductController::class, 'approve'])->name('admin.products.approve');
     Route::get('/{id}/reject', [AdminProductController::class, 'reject'])->name('admin.products.reject');
-    Route::get('/{id}/delete', [AdminProductController::class, 'destroy'])->name('admin.products.delete');
+    Route::delete('/{id}/delete', [AdminProductController::class, 'destroy'])->name('admin.products.delete');
 });
 
 // إضافة سريعة للموردين والتصنيفات من صفحة المنتج

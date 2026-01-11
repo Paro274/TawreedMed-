@@ -207,6 +207,10 @@ class AdminProductController extends Controller
             }
         }
         
+        // Manual cleanup of relations to ensure deletion works even if DB cascade is missing
+        \Illuminate\Support\Facades\DB::table('order_items')->where('product_id', $id)->delete();
+        \Illuminate\Support\Facades\DB::table('cart_items')->where('product_id', $id)->delete();
+
         $product->delete();
         return back()->with('success', 'تم حذف المنتج بنجاح');
     }

@@ -104,8 +104,10 @@
                 <td>
                     <a href="{{ route('admin.products.edit', $product->id) }}" class="btn edit-btn">تعديل</a>
                     
-                    <form action="{{ route('admin.products.delete', $product->id) }}" method="GET" style="display:inline;" onsubmit="return confirm('هل أنت متأكد من حذف هذا المنتج نهائياً؟')">
-                        <button type="submit" class="btn btn-reject" style="border:none; cursor:pointer;">حذف</button>
+                    <form action="{{ route('admin.products.delete', $product->id) }}" method="POST" style="display:inline;" class="delete-form">
+                        @csrf
+                        @method('DELETE')
+                        <button type="button" class="btn btn-reject" style="border:none; cursor:pointer;" onclick="confirmDelete(this)">حذف</button>
                     </form>
                     
                     @if($product->status == 'معلق')
@@ -130,5 +132,24 @@
     @endif
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmDelete(button) {
+        Swal.fire({
+            title: 'هل أنت متأكد؟',
+            text: "لن تتمكن من استرجاع هذا المنتج بعد الحذف!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'نعم، احذفه!',
+            cancelButtonText: 'إلغاء'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                button.closest('form').submit();
+            }
+        });
+    }
+</script>
 </body>
 </html>

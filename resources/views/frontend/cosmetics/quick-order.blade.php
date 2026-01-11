@@ -86,11 +86,15 @@
                                                onfocus="this.placeholder = ''"
                                                onblur="this.placeholder = '0'"
                                                oninput="updateRowTotal(this)">
+                                        @if($product->total_units)
                                         <small class="text-muted d-block mt-1">المتاح: {{ $product->total_units }}</small>
+                                    @endif
                                     @else
-                                         <span class="badge bg-secondary mb-1">غير متوفر</span>
-                                         <small class="text-muted d-block">المتاح: {{ $product->total_units }}</small>
-                                         <input type="hidden" class="quantity-input" value="0">
+                                        <span class="badge bg-secondary mb-1">غير متوفر</span>
+                                        @if($product->total_units)
+                                            <small class="text-muted d-block">المتاح: {{ $product->total_units }}</small>
+                                        @endif
+                                        <input type="hidden" class="quantity-input" value="0">
                                     @endif
                                 </td>
                                 <td class="text-center">

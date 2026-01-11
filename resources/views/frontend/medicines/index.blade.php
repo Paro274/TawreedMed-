@@ -248,14 +248,35 @@
                                 <h3>{{ $product->name }}</h3>
                                 <p class="product-category">{{ $product->short_description ?? ($product->category->name ?? 'غير محدد') }}</p>
                                 
-                                {{-- ✅ تعديل السعر: عرض سعر الباكيدج بالكامل --}}
-                                <div class="product-price">
-                                    <span class="price">{{ number_format($product->final_package_price, 2) }}</span>
-                                    <span class="unit">جنيه / {{ $product->package_type ?? 'كرتونة' }}</span>
-                                </div>
+                                {{-- ✅ عرض السعر: السعر قبل الخصم + السعر بعد الخصم --}}
+                                {{-- ✅ عرض السعر: السعر قبل الخصم + السعر بعد الخصم --}}
+                                <div class="product-price-details mb-3 text-center">
+                                    {{-- السعر قبل الخصم --}}
+                                    @php
+                                        $publicPrice = $product->price * ($product->units_per_package > 0 ? $product->units_per_package : 1);
+                                    @endphp
+                                    <div class="public-price mb-2">
+                                        <span class="fw-bold" style="font-size: 0.95rem; color: #dc3545;">سعر الجمهور:</span>
+                                        <span class="text-decoration-line-through fw-bold" style="font-size: 1.3rem; font-family: 'Arial', sans-serif; color: #dc3545;">{{ number_format($publicPrice, 2) }} جنيه</span>
+                                    </div>
 
-                                <div class="product-discount" style="{{ $product->discount > 0 ? '' : 'visibility: hidden' }}">
-                                    خصم {{ $product->discount }}%
+                                    {{-- الخصم (في المنتصف) --}}
+                                    @if($product->discount > 0)
+                                        <div class="mb-2">
+                                            <span class="badge rounded-pill custom-discount-box px-3 py-2" style="font-size: 0.9rem;">
+                                                <i class="fas fa-arrow-down me-1"></i> خصم {{ $product->discount }}%
+                                            </span>
+                                        </div>
+                                    @else
+                                        <div style="height: 38px;"></div>
+                                    @endif
+
+                                    {{-- السعر بعد الخصم --}}
+                                    <div class="product-price d-flex justify-content-center align-items-baseline gap-2 mt-2">
+                                        <span class="fw-bold text-dark small">بعد الخصم:</span>
+                                        <span class="fw-bolder text-primary" style="font-size: 1.5rem;">{{ number_format($product->final_package_price, 2) }}</span>
+                                        <span class="badge bg-dark text-white">{{ $product->package_type ?? 'كرتونة' }}</span>
+                                    </div>
                                 </div>
                                 
                                 {{-- ✅ تعديل الزرار: تحويل لصفحة المنتج --}}

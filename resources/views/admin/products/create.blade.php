@@ -184,12 +184,12 @@
     </div>
 </div>
 
-<label for="stock_quantity">إجمالي الكمية (Total Quantity):</label>
-<input type="number" id="stock_quantity" name="stock_quantity" required placeholder="مثال: 100">
+<label for="stock_quantity">إجمالي الكمية (Total Quantity) (اختياري):</label>
+<input type="number" id="stock_quantity" name="stock_quantity" placeholder="مثال: 100">
 
 <h3>تفاصيل إضافية</h3>
 
-<label>اسم الشركة:</label>
+<label>اسم الشركة (اختياري):</label>
 <input type="text" name="company_name">
 
 <label>الوصف المختصر:</label>

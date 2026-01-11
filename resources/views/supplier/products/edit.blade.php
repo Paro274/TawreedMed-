@@ -241,7 +241,7 @@ h3 { color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 5px; marg
     <input type="text" id="final_price" readonly>
 </div>
 
-<label>اسم الشركة:</label>
+<label>اسم الشركة (اختياري):</label>
 <input type="text" name="company_name" value="{{ $product->company_name }}">
 
 <label>الوصف المختصر:</label>
@@ -312,8 +312,8 @@ h3 { color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 5px; marg
     </div>
 </div>
 
-<label for="stock_quantity">إجمالي الكمية (Total Quantity):</label>
-<input type="number" id="stock_quantity" name="stock_quantity" value="{{ $product->total_units }}" required>
+<label for="stock_quantity">إجمالي الكمية (Total Quantity) (اختياري):</label>
+<input type="number" id="stock_quantity" name="stock_quantity" value="{{ $product->total_units }}">
 
 <h3>الصور الحالية</h3>
 <div class="current-images">

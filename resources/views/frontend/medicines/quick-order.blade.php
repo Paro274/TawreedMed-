@@ -94,10 +94,14 @@
                                                onfocus="this.placeholder = ''"
                                                onblur="this.placeholder = '0'"
                                                oninput="updateRowTotal(this)">
+                                        @if($product->total_units)
                                         <small class="text-muted d-block mt-1">المتاح: {{ $product->total_units }}</small>
+                                    @endif
                                     @else
                                         <span class="badge bg-secondary mb-1">غير متوفر</span>
-                                        <small class="text-muted d-block">المتاح: {{ $product->total_units }}</small>
+                                        @if($product->total_units)
+                                            <small class="text-muted d-block">المتاح: {{ $product->total_units }}</small>
+                                        @endif
                                         <input type="hidden" class="quantity-input" value="0">
                                     @endif
                                 </td>
@@ -524,19 +528,34 @@ function submitBulkOrder(redirect = false) {
     fetch("{{ route('frontend.cart.clear') }}", {
         method: 'DELETE',
         headers: {
-            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-        }
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            'X-Requested-With': 'XMLHttpRequest',
+            'Accept': 'application/json'
+        },
+        credentials: 'same-origin'
     }).then(response => {
+        if (response.status === 419) {
+            window.location.reload(); // Reload if session expired
+            throw new Error('Session expired');
+        }
         const promises = products.map(p => {
             return fetch("{{ route('frontend.cart.add') }}", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                    'X-Requested-With': 'XMLHttpRequest'
                 },
+                credentials: 'same-origin',
                 body: JSON.stringify(p)
-            }).then(res => res.json());
+            }).then(res => {
+                if (res.status === 419) {
+                     window.location.reload();
+                     throw new Error('Session expired');
+                }
+                return res.json();
+            });
         });
 
         return Promise.all(promises);
